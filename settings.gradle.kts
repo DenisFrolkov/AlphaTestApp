@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "AlphaTestApp"
 include(":app")
+include(":core")
