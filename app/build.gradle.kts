@@ -39,8 +39,8 @@ android {
     }
 }
 
-// Библиотеки для работы с Android
 dependencies {
+// Библиотеки для работы с Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
