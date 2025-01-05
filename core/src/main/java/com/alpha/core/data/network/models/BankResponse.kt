@@ -1,6 +1,6 @@
 package com.alpha.core.models
 
-data class Bank(
+data class BankResponse(
     val city: String,
     val name: String,
     val phone: String,

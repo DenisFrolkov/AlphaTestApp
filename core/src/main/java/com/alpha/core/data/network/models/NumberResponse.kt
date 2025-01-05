@@ -1,6 +1,6 @@
 package com.alpha.core.models
 
-data class Number(
+data class NumberResponse(
     val length: Int,
     val luhn: Boolean
 )

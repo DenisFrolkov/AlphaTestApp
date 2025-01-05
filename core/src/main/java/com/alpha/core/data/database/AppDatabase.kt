@@ -7,7 +7,7 @@ import com.alpha.core.data.database.models.BinInfoEntity
 import com.alpha.core.data.database.models.CountryEntity
 import com.alpha.core.data.database.models.NumberEntity
 
-@Database(entities = [BinInfoEntity::class, NumberEntity::class, BankEntity::class, CountryEntity::class], version = 1)
+@Database(entities = [BinInfoEntity::class, NumberEntity::class, BankEntity::class, CountryEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun binDao(): BinDao
 }

@@ -2,16 +2,18 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("dagger.hilt.android.plugin")
+    id("kotlin-kapt")
 }
 
 android {
     namespace = "com.alpha.testwork"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.alpha.testwork"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -37,9 +39,20 @@ android {
     buildFeatures {
         compose = true
     }
+    packagingOptions {
+        resources {
+            excludes += "META-INF/gradle/incremental.annotation.processors"
+        }
+    }
 }
 
 dependencies {
+    implementation(project(":core"))
+    implementation(project(":feature_bin"))
+
+    implementation("com.google.dagger:hilt-android:2.54")
+    kapt("com.google.dagger:hilt-compiler:2.54")
+
 // Библиотеки для работы с Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
