@@ -7,5 +7,5 @@ import retrofit2.http.Path
 
 interface ApiService {
     @GET("{bin}")
-    suspend fun getBinInfo(@Path("bin") bin: String): Response<BinInfoResponse>
+    suspend fun getBinInfo(@Path("bin") bin: String): BinInfoResponse
 }

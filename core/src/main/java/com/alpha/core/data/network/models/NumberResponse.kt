@@ -1,6 +1,10 @@
 package com.alpha.core.models
 
+import com.google.gson.annotations.SerializedName
+
 data class NumberResponse(
-    val length: Int,
-    val luhn: Boolean
+    @SerializedName("length")
+    val length: Int?,
+    @SerializedName("luhn")
+    val luhn: Boolean?
 )

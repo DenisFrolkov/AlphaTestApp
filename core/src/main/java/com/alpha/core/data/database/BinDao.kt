@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Transaction
 import com.alpha.core.data.database.models.BankEntity
 import com.alpha.core.data.database.models.BinInfoEntity
-import com.alpha.core.data.database.models.BinInfoWithDetails
+import com.alpha.core.data.database.models.BinInfoWithDetailsEntity
 import com.alpha.core.data.database.models.CountryEntity
 import com.alpha.core.data.database.models.NumberEntity
 
@@ -39,9 +39,9 @@ interface BinDao {
 
     @Transaction
     @Query("SELECT * FROM bin_info WHERE bId = :binId")
-    suspend fun getBinInfoWithDetails(binId: Int): BinInfoWithDetails
+    suspend fun getBinInfoWithDetails(binId: Int): BinInfoWithDetailsEntity
 
     @Transaction
     @Query("SELECT * FROM bin_info")
-    suspend fun getAllBinInfoWithDetails(): List<BinInfoWithDetails>
+    suspend fun getAllBinInfoWithDetails(): List<BinInfoWithDetailsEntity>
 }

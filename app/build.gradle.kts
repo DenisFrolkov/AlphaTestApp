@@ -47,8 +47,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
     implementation(project(":feature_bin"))
+    implementation(project(":core"))
 
     implementation("com.google.dagger:hilt-android:2.54")
     kapt("com.google.dagger:hilt-compiler:2.54")

@@ -25,15 +25,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             val bin = mainViewModel.binInfo.collectAsState().value
             AlphaTestAppTheme {
-                mainViewModel.fetchBinInfo("45717360")
                 Column {
-                    Button(onClick = {mainViewModel.fetchBinInfo("45717360")}) { }
+                    Button(onClick = {mainViewModel.fetchBinInfo("22007009")}) { }
                     when (bin) {
                         is UiState.Loading -> { Text("Загрузка") }
                         is UiState.Success -> {
-                            Text(bin.data.toString())
+                            bin.data.bank?.name?.let { Text(it) }
+                            bin.data.country?.currency?.let { Text(it) }
                         }
-                        is UiState.Error -> { Text("Ошибка") }
+                        is UiState.Error -> { Text(bin.message) }
                     }
                 }
 

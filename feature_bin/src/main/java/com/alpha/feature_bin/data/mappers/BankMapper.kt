@@ -1,11 +1,11 @@
 package com.alpha.feature_bin.data.mappers
 
 import com.alpha.core.data.database.models.BankEntity
-import com.alpha.core.models.BankDomain
+import com.alpha.core.data.model.Bank
 
 object BankMapper {
 
-    fun BankDomain.toEntity(): BankEntity {
+    fun Bank.toEntity(): BankEntity {
         return BankEntity(
             city = city,
             name = name,

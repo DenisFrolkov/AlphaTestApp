@@ -1,11 +1,11 @@
 package com.alpha.feature_bin.data.mappers
 
 import com.alpha.core.data.database.models.CountryEntity
-import com.alpha.core.models.CountryDomain
+import com.alpha.core.data.model.Country
 
 object CountryMapper {
 
-    fun CountryDomain.toEntity(): CountryEntity {
+    fun Country.toEntity(): CountryEntity {
         return CountryEntity(
             numeric = numeric,
             alpha2 = alpha2,

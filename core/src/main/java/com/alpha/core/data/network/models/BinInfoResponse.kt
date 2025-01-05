@@ -1,11 +1,20 @@
 package com.alpha.core.models
 
+import com.google.gson.annotations.SerializedName
+
 data class BinInfoResponse(
-    val numberResponse: NumberResponse,
-    val scheme: String,
-    val type: String,
-    val brand: String,
-    val prepaid: Boolean,
-    val countryResponse: CountryResponse,
-    val bankResponse: BankResponse,
+    @SerializedName("number")
+    val numberResponse: NumberResponse?,
+    @SerializedName("scheme")
+    val scheme: String?,
+    @SerializedName("type")
+    val type: String?,
+    @SerializedName("brand")
+    val brand: String?,
+    @SerializedName("prepaid")
+    val prepaid: Boolean?,
+    @SerializedName("country")
+    val countryResponse: CountryResponse?,
+    @SerializedName("bank")
+    val bankResponse: BankResponse?,
 )

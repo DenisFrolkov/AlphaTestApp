@@ -1,11 +1,11 @@
-package com.alpha.core.repository
+package com.alpha.core.source
 
 import com.alpha.core.data.model.Bank
 import com.alpha.core.data.model.BinInfo
 import com.alpha.core.data.model.Country
 import com.alpha.core.data.model.Number
 
-interface BinInfoHistoryRepository {
+interface LocalDataSource {
     suspend fun saveBinInfo(
         binInfo: BinInfo,
         number: Number,

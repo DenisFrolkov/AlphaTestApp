@@ -1,24 +1,29 @@
-package com.alpha.core.di
+package com.alpha.feature_bin.data.di
 
-import com.alpha.feature_bin.data.source.BinInfoDataSource
+import com.alpha.core.repository.BinInfoHistoryRepository
+import com.alpha.core.repository.BinInfoRepository
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
 import com.alpha.feature_bin.domain.usecases.SaveBinInfoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object FeatureBinModule {
 
     @Provides
-    fun providesGetBinInfoUseCase(repository: BinInfoDataSource): GetBinInfoUseCase {
+    @Singleton
+    fun providesGetBinInfoUseCase(repository: BinInfoRepository): GetBinInfoUseCase {
         return GetBinInfoUseCase(repository)
     }
 
     @Provides
-    fun providesSaveBinInfoUseCase(repository: BinInfoDataSource): SaveBinInfoUseCase {
+    @Singleton
+    fun providesSaveBinInfoUseCase(repository: BinInfoHistoryRepository): SaveBinInfoUseCase {
         return SaveBinInfoUseCase(repository)
     }
+
 }

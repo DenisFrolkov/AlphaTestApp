@@ -2,7 +2,7 @@ package com.alpha.feature_bin.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.alpha.core.models.BinInfoDomain
+import com.alpha.core.data.model.BinInfo
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
 import com.alpha.feature_bin.presentation.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,8 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val getBinInfoUseCase: GetBinInfoUseCase): ViewModel() {
-    private val _binInfo = MutableStateFlow<UiState<BinInfoDomain>>(UiState.Loading)
-    val binInfo: StateFlow<UiState<BinInfoDomain>>
+    private val _binInfo = MutableStateFlow<UiState<BinInfo>>(UiState.Loading)
+    val binInfo: StateFlow<UiState<BinInfo>>
         get() = _binInfo.asStateFlow()
 
     fun fetchBinInfo(bin: String) {
