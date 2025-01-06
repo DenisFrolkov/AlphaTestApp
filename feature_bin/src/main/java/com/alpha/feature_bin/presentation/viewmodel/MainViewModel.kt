@@ -1,8 +1,5 @@
 package com.alpha.feature_bin.presentation.viewmodel
 
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpha.core.data.model.BinInfo
