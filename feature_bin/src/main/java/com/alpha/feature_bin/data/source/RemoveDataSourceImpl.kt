@@ -2,8 +2,8 @@ package com.alpha.feature_bin.data.source
 
 import com.alpha.core.data.model.BinInfo
 import com.alpha.core.data.network.ApiService
-import com.alpha.feature_bin.data.mappers.BinInfoMapper.toDomain
 import com.alpha.core.source.RemoveDataSource
+import com.alpha.feature_bin.data.mappers.BinInfoMapper.toDomain
 import javax.inject.Inject
 
 class RemoveDataSourceImpl @Inject constructor(

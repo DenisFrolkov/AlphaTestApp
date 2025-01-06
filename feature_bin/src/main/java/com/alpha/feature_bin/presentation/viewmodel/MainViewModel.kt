@@ -1,8 +1,12 @@
 package com.alpha.feature_bin.presentation.viewmodel
 
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.alpha.core.data.model.BinInfo
+import com.alpha.feature_bin.domain.usecases.CheckInternetUseCase
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
 import com.alpha.feature_bin.presentation.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,19 +17,28 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val getBinInfoUseCase: GetBinInfoUseCase): ViewModel() {
+class MainViewModel @Inject constructor(
+    private val getBinInfoUseCase: GetBinInfoUseCase,
+    private val checkInternetUseCase: CheckInternetUseCase
+) : ViewModel() {
+
     private val _binInfo = MutableStateFlow<UiState<BinInfo>>(UiState.Loading)
-    val binInfo: StateFlow<UiState<BinInfo>>
-        get() = _binInfo.asStateFlow()
+    val binInfo: StateFlow<UiState<BinInfo>> = _binInfo.asStateFlow()
 
     fun fetchBinInfo(bin: String) {
         viewModelScope.launch {
             _binInfo.value = UiState.Loading
+
+            if (!checkInternetUseCase.invoke()) {
+                _binInfo.value = UiState.Error("Нет доступа к интернету")
+                return@launch
+            }
+
             try {
                 val result = getBinInfoUseCase(bin)
                 _binInfo.value = UiState.Success(result)
             } catch (e: Exception) {
-                _binInfo.value = UiState.Error(e.message ?: "Error fetching BIN info")
+                _binInfo.value = UiState.Error("Проверьте корректность введенного BIN")
             }
         }
     }

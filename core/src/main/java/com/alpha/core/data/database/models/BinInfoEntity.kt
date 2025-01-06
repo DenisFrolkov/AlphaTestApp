@@ -32,9 +32,9 @@ import androidx.room.PrimaryKey
 data class BinInfoEntity(
     @PrimaryKey(autoGenerate = true) val bId: Long = 0,
     @ColumnInfo(name = "numberId") val numberId: Long?,
-    @ColumnInfo(name = "scheme") val scheme: String?,
-    @ColumnInfo(name = "type") val type: String?,
-    @ColumnInfo(name = "brand") val brand: String?,
+    @ColumnInfo(name = "scheme") val scheme: String,
+    @ColumnInfo(name = "type") val type: String,
+    @ColumnInfo(name = "brand") val brand: String,
     @ColumnInfo(name = "prepaid") val prepaid: Boolean?,
     @ColumnInfo(name = "countryId") val countryId: Long?,
     @ColumnInfo(name = "bankId") val bankId: Long?,

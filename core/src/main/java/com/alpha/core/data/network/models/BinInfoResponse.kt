@@ -6,11 +6,11 @@ data class BinInfoResponse(
     @SerializedName("number")
     val numberResponse: NumberResponse?,
     @SerializedName("scheme")
-    val scheme: String?,
+    val scheme: String,
     @SerializedName("type")
-    val type: String?,
+    val type: String,
     @SerializedName("brand")
-    val brand: String?,
+    val brand: String,
     @SerializedName("prepaid")
     val prepaid: Boolean?,
     @SerializedName("country")

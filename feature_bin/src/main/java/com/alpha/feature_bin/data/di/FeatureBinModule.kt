@@ -2,6 +2,8 @@ package com.alpha.feature_bin.data.di
 
 import com.alpha.core.repository.BinInfoHistoryRepository
 import com.alpha.core.repository.BinInfoRepository
+import com.alpha.core.repository.NetworkRepository
+import com.alpha.feature_bin.domain.usecases.CheckInternetUseCase
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
 import com.alpha.feature_bin.domain.usecases.SaveBinInfoUseCase
 import dagger.Module
@@ -24,6 +26,12 @@ object FeatureBinModule {
     @Singleton
     fun providesSaveBinInfoUseCase(repository: BinInfoHistoryRepository): SaveBinInfoUseCase {
         return SaveBinInfoUseCase(repository)
+    }
+
+    @Provides
+    @Singleton
+    fun providesCheckInternetUseCase(repository: NetworkRepository): CheckInternetUseCase {
+        return CheckInternetUseCase(repository)
     }
 
 }
