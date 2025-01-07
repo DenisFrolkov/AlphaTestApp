@@ -1,6 +1,7 @@
 package com.alpha.core.data.network
 
 import com.alpha.core.models.BinInfoResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 

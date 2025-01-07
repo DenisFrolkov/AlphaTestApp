@@ -3,23 +3,23 @@ package com.alpha.core.data.database.models
 import androidx.room.Embedded
 import androidx.room.Relation
 
-data class BinInfoWithDetails(
+data class BinInfoWithDetailsEntity(
     @Embedded val binInfoEntity: BinInfoEntity,
     @Relation(
-        parentColumn = "nId",
-        entityColumn = "numberId"
+        parentColumn = "numberId",
+        entityColumn = "nId"
     )
     val numberEntity: NumberEntity,
 
     @Relation(
-        parentColumn = "cId",
-        entityColumn = "countryId"
+        parentColumn = "countryId",
+        entityColumn = "cId"
     )
     val countryEntity: CountryEntity,
 
     @Relation(
-        parentColumn = "bId",
-        entityColumn = "bankId"
+        parentColumn = "bankId",
+        entityColumn = "bId"
     )
     val bankEntity: BankEntity
 )
