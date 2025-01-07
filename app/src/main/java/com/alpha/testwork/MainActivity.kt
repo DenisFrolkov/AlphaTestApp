@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import com.alpha.feature_bin.presentation.viewmodel.MainViewModel
-import com.alpha.feature_history.presentation.screen.HistoryScreen
 import com.alpha.feature_history.presentation.viewmodel.HistoryViewModel
+import com.alpha.testwork.navigation.AppNavigation
 import com.alpha.testwork.ui.theme.AlphaTestAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +22,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AlphaTestAppTheme {
-                HistoryScreen(historyViewModel)
+                AppNavigation(
+                    mainViewModel = mainViewModel,
+                    historyViewModel = historyViewModel
+                )
             }
         }
     }
