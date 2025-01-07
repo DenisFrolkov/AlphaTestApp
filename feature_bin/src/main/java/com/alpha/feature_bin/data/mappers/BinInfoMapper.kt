@@ -11,6 +11,7 @@ object BinInfoMapper {
 
     fun BinInfo.toEntity(): BinInfoEntity {
         return BinInfoEntity(
+            bin = bin,
             numberId = 0,
             scheme = scheme,
             type = type,

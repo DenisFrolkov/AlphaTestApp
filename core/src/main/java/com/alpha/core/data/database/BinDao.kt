@@ -2,6 +2,7 @@ package com.alpha.core.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import com.alpha.core.data.database.models.BankEntity
@@ -21,19 +22,23 @@ interface BinDao {
     @Insert
     suspend fun insertBank(bank: BankEntity): Long
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBinInfo(binInfo: BinInfoEntity)
 
     @Transaction
     suspend fun insertFullData(
         binInfo: BinInfoEntity,
-        number: NumberEntity,
-        country: CountryEntity,
-        bank: BankEntity
+        number: NumberEntity?,
+        country: CountryEntity?,
+        bank: BankEntity?
     ) {
-        val numberId = insertNumber(number)
-        val countryId = insertCountry(country)
-        val backId = insertBank(bank)
+        val numberId = if (number?.luhn != null || number?.length != null) {
+            insertNumber(number)
+        } else {
+            null
+        }
+        val countryId = country?.let { insertCountry(it) }
+        val backId = bank?.let { insertBank(it) }
         insertBinInfo(binInfo.copy(numberId = numberId, countryId = countryId, bankId = backId))
     }
 

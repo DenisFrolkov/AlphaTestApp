@@ -18,11 +18,11 @@ class LocalDataSourceImpl @Inject constructor(
 ): LocalDataSource {
     override suspend fun saveBinInfo(
         binInfo: BinInfo,
-        number: Number,
-        country: Country,
-        bank: Bank
+        number: Number?,
+        country: Country?,
+        bank: Bank?
     ) {
-        binDao.insertFullData(binInfo.toEntity(), number.toEntity(), country.toEntity(), bank.toEntity())
+        binDao.insertFullData(binInfo.toEntity(), number?.toEntity(), country?.toEntity(), bank?.toEntity())
     }
 
     override suspend fun getAllBinInfoWithDetails(): List<BinInfo> {

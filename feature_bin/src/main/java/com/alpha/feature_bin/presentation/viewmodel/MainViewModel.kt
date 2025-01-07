@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.alpha.core.data.model.BinInfo
 import com.alpha.feature_bin.domain.usecases.CheckInternetUseCase
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
+import com.alpha.feature_bin.domain.usecases.SaveBinInfoUseCase
 import com.alpha.feature_bin.presentation.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getBinInfoUseCase: GetBinInfoUseCase,
-    private val checkInternetUseCase: CheckInternetUseCase
+    private val checkInternetUseCase: CheckInternetUseCase,
+    private val saveBinInfoUseCase: SaveBinInfoUseCase
 ) : ViewModel() {
 
     private val _binInfo = MutableStateFlow<UiState<BinInfo>>(UiState.Loading)
@@ -34,6 +36,12 @@ class MainViewModel @Inject constructor(
             try {
                 val result = getBinInfoUseCase(bin)
                 _binInfo.value = UiState.Success(result)
+                saveBinInfoUseCase(
+                    result.copy(bin = bin),
+                    result.number,
+                    result.country,
+                    result.bank
+                )
             } catch (e: Exception) {
                 _binInfo.value = UiState.Error("Проверьте корректность введенного BIN")
             }

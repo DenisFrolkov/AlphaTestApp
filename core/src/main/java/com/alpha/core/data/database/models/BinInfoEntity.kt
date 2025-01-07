@@ -27,10 +27,11 @@ import androidx.room.PrimaryKey
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["countryId"]), Index(value = ["bankId"]), Index(value = ["numberId"])]
+    indices = [Index(value = ["binNumber"], unique = true), Index(value = ["countryId"]), Index(value = ["bankId"]), Index(value = ["numberId"])]
 )
 data class BinInfoEntity(
     @PrimaryKey(autoGenerate = true) val bId: Long = 0,
+    @ColumnInfo(name = "binNumber") val bin: String?,
     @ColumnInfo(name = "numberId") val numberId: Long?,
     @ColumnInfo(name = "scheme") val scheme: String,
     @ColumnInfo(name = "type") val type: String,

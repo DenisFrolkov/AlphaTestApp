@@ -9,9 +9,9 @@ import com.alpha.core.repository.BinInfoHistoryRepository
 class SaveBinInfoUseCase(private val binInfoHistoryRepository: BinInfoHistoryRepository) {
     suspend operator fun invoke(
         binInfo: BinInfo,
-        number: Number,
-        country: Country,
-        bank: Bank
+        number: Number?,
+        country: Country?,
+        bank: Bank?
     ) {
         binInfoHistoryRepository.saveBinInfo(binInfo, number, country, bank)
     }

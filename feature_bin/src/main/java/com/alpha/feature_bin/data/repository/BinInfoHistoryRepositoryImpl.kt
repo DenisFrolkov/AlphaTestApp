@@ -13,9 +13,9 @@ class BinInfoHistoryRepositoryImpl @Inject constructor(
 ) : BinInfoHistoryRepository {
     override suspend fun saveBinInfo(
         binInfo: BinInfo,
-        number: Number,
-        country: Country,
-        bank: Bank
+        number: Number?,
+        country: Country?,
+        bank: Bank?
     ) {
         localDataSource.saveBinInfo(binInfo, number, country, bank)
     }
