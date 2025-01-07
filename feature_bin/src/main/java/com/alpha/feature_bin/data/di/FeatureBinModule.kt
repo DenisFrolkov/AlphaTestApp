@@ -1,8 +1,8 @@
 package com.alpha.feature_bin.data.di
 
-import com.alpha.core.repository.BinInfoHistoryRepository
-import com.alpha.core.repository.BinInfoRepository
-import com.alpha.core.repository.NetworkRepository
+import com.alpha.core.domain.repository.BinHistoryRepository
+import com.alpha.core.domain.repository.BinRepository
+import com.alpha.core.domain.repository.NetworkRepository
 import com.alpha.feature_bin.domain.usecases.CheckInternetUseCase
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
 import com.alpha.feature_bin.domain.usecases.SaveBinInfoUseCase
@@ -18,13 +18,13 @@ object FeatureBinModule {
 
     @Provides
     @Singleton
-    fun providesGetBinInfoUseCase(repository: BinInfoRepository): GetBinInfoUseCase {
+    fun providesGetBinInfoUseCase(repository: BinRepository): GetBinInfoUseCase {
         return GetBinInfoUseCase(repository)
     }
 
     @Provides
     @Singleton
-    fun providesSaveBinInfoUseCase(repository: BinInfoHistoryRepository): SaveBinInfoUseCase {
+    fun providesSaveBinInfoUseCase(repository: BinRepository): SaveBinInfoUseCase {
         return SaveBinInfoUseCase(repository)
     }
 

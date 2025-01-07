@@ -1,5 +1,6 @@
-package com.alpha.feature_bin.data.source
+package com.alpha.feature_history.data.source
 
+import android.util.Log
 import com.alpha.core.data.database.BinDao
 import com.alpha.core.data.model.mappers.BinInfoWithDetailsMapper.toDomainList
 import com.alpha.core.data.model.Bank
@@ -26,6 +27,13 @@ class LocalDataSourceImpl @Inject constructor(
     }
 
     override suspend fun getAllBinInfoWithDetails(): List<BinInfo> {
-        return binDao.getAllBinInfoWithDetails().toDomainList()
+//        Log.d("LocalDataSourceImpl1", response.toDomainList().toString())
+//        Log.d("LocalDataSourceImpl2", response.toString())
+        return try {
+            val response = binDao.getAllBinInfoWithDetails()
+            response.toDomainList()
+        } catch (e: Exception) {
+            throw RuntimeException("$e")
+        }
     }
 }

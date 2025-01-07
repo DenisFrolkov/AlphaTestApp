@@ -1,24 +1,25 @@
-package com.alpha.feature_bin.data.mappers
+package com.alpha.core.data.model.mappers
 
 import com.alpha.core.data.database.models.BinInfoEntity
 import com.alpha.core.data.model.Bank
 import com.alpha.core.data.model.BinInfo
 import com.alpha.core.data.model.Country
 import com.alpha.core.data.model.Number
+import com.alpha.core.data.model.mappers.BinInfoMapper.toEntity
 import com.alpha.core.models.BinInfoResponse
 
 object BinInfoMapper {
 
     fun BinInfo.toEntity(): BinInfoEntity {
         return BinInfoEntity(
-            bin = bin,
+            bin = bin!!,
             numberId = 0,
             scheme = scheme,
             type = type,
             brand = brand,
-            prepaid = prepaid,
-            countryId = 0,
-            bankId = 0,
+            prepaid = null,
+            countryId = null,
+            bankId = null,
         )
     }
 

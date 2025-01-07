@@ -1,4 +1,4 @@
-package com.alpha.core.source
+package com.alpha.core.domain.source
 
 import com.alpha.core.data.model.Bank
 import com.alpha.core.data.model.BinInfo

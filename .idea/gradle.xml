@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/feature_bin" />
+            <option value="$PROJECT_DIR$/feature_history" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

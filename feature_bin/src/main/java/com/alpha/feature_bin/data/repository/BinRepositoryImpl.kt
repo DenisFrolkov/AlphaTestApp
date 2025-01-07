@@ -4,13 +4,19 @@ import com.alpha.core.data.model.Bank
 import com.alpha.core.data.model.BinInfo
 import com.alpha.core.data.model.Country
 import com.alpha.core.data.model.Number
-import com.alpha.core.source.LocalDataSource
-import com.alpha.core.repository.BinInfoHistoryRepository
+import com.alpha.core.domain.source.RemoveDataSource
+import com.alpha.core.domain.repository.BinRepository
+import com.alpha.core.domain.source.LocalDataSource
 import javax.inject.Inject
 
-class BinInfoHistoryRepositoryImpl @Inject constructor(
+class BinRepositoryImpl @Inject constructor(
+    private val remoteDataSource: RemoveDataSource,
     private val localDataSource: LocalDataSource
-) : BinInfoHistoryRepository {
+) : BinRepository {
+    override suspend fun getBinInfo(bin: String): BinInfo {
+        return remoteDataSource.getBinInfo(bin)
+    }
+
     override suspend fun saveBinInfo(
         binInfo: BinInfo,
         number: Number?,
@@ -19,9 +25,4 @@ class BinInfoHistoryRepositoryImpl @Inject constructor(
     ) {
         localDataSource.saveBinInfo(binInfo, number, country, bank)
     }
-
-    override suspend fun getAllBinInfoWithDetails(): List<BinInfo> {
-        return localDataSource.getAllBinInfoWithDetails()
-    }
-
 }

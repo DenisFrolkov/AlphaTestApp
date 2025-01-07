@@ -1,23 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
-    namespace = "com.alpha.testwork"
+    namespace = "com.alpha.feature_history"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.alpha.testwork"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,29 +34,34 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
-    implementation(project(":feature_bin"))
-    implementation(project(":feature_history"))
+
     implementation(project(":core"))
 
+    //ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
+
+    //Hilt DI
     implementation("com.google.dagger:hilt-android:2.54")
     kapt("com.google.dagger:hilt-compiler:2.54")
 
-// Библиотеки для работы с Android
+    //Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+
+    // Библиотеки для работы с Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
 // Библиотеки для Jetpack Compose
     implementation(platform(libs.androidx.compose.bom))
-    implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.ui)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.compose.material3.material3)
 
@@ -70,6 +73,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
 // Инструменты для отладки
+    implementation(libs.androidx.appcompat)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
