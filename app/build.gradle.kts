@@ -46,6 +46,9 @@ dependencies {
     implementation(project(":feature_history"))
     implementation(project(":core"))
 
+    //Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.5")
+    //DI Hilt
     implementation("com.google.dagger:hilt-android:2.54")
     kapt("com.google.dagger:hilt-compiler:2.54")
 

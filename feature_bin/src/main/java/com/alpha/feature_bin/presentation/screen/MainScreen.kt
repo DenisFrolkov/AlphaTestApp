@@ -19,7 +19,6 @@ import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
@@ -40,18 +39,21 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.alpha.feature_bin.R
 import com.alpha.feature_bin.presentation.utils.UiState
 import com.alpha.feature_bin.presentation.viewmodel.MainViewModel
 
 @SuppressLint("WrongConstant")
 @Composable
-fun MainScreen(mainViewModel: MainViewModel) {
+fun MainScreen(
+    navController: NavController,
+    mainViewModel: MainViewModel
+) {
     val bin = mainViewModel.binInfo.collectAsState().value
 
     var textValue by remember { mutableStateOf("") }
@@ -66,7 +68,9 @@ fun MainScreen(mainViewModel: MainViewModel) {
         contentColor = MaterialTheme.colorScheme.surface,
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = {
+                    navController.navigate("history_screen")
+                },
                 shape = MaterialTheme.shapes.extraLarge,
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             ) {

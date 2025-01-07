@@ -39,6 +39,9 @@ android {
 dependencies {
     implementation(project(":core"))
 
+    //Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.5")
+
     //ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.7")
 

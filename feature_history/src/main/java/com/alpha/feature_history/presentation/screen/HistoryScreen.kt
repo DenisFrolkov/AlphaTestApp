@@ -42,11 +42,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.alpha.feature_history.presentation.utils.UiState
 import com.alpha.feature_history.presentation.viewmodel.HistoryViewModel
 
 @Composable
 fun HistoryScreen(
+    navController: NavController,
     historyViewModel: HistoryViewModel
 ) {
     val listBinInfo = historyViewModel.binHistoryInfo.collectAsState().value
@@ -58,12 +60,18 @@ fun HistoryScreen(
         topBar = {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(
-                    onClick = { },
+                    onClick = {
+                        navController.popBackStack()
+                    },
                     modifier = Modifier
                         .padding(16.dp)
                         .wrapContentSize(Alignment.CenterStart)
                 ) {
-                    Image(Icons.Default.ArrowBack, contentDescription = "Назад")
+                    Image(
+                        imageVector = Icons.Default.ArrowBack,
+                        colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.primary),
+                        contentDescription = "Назад"
+                    )
                 }
                 Text(
                     text = "История запросов",
@@ -83,11 +91,6 @@ fun HistoryScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-
-            item {
-                Button(onClick = { historyViewModel.fetchBinHistoryInfo() }) { }
-            }
-
             when (listBinInfo) {
                 is UiState.Error -> {
                     item {
