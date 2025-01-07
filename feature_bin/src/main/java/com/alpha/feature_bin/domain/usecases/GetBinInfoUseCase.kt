@@ -1,11 +1,11 @@
 package com.alpha.feature_bin.domain.usecases
 
 import com.alpha.core.data.model.BinInfo
-import com.alpha.core.repository.BinInfoRepository
+import com.alpha.core.domain.repository.BinRepository
 import javax.inject.Inject
 
-class GetBinInfoUseCase @Inject constructor(private val binInfoRepository: BinInfoRepository) {
+class GetBinInfoUseCase @Inject constructor(private val binRepository: BinRepository) {
     suspend operator fun invoke(bin: String): BinInfo {
-        return binInfoRepository.getBinInfo(bin)
+        return binRepository.getBinInfo(bin)
     }
 }

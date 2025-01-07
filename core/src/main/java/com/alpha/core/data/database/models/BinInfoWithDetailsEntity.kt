@@ -9,17 +9,17 @@ data class BinInfoWithDetailsEntity(
         parentColumn = "numberId",
         entityColumn = "nId"
     )
-    val numberEntity: NumberEntity,
+    val numberEntity: NumberEntity?,
 
     @Relation(
         parentColumn = "countryId",
         entityColumn = "cId"
     )
-    val countryEntity: CountryEntity,
+    val countryEntity: CountryEntity?,
 
     @Relation(
         parentColumn = "bankId",
         entityColumn = "bId"
     )
-    val bankEntity: BankEntity
+    val bankEntity: BankEntity?
 )

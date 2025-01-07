@@ -1,7 +1,7 @@
 package com.alpha.feature_bin.data.repository
 
-import com.alpha.core.repository.NetworkRepository
-import com.alpha.core.source.NetworkDataSource
+import com.alpha.core.domain.repository.NetworkRepository
+import com.alpha.core.domain.source.NetworkDataSource
 import javax.inject.Inject
 
 class NetworkRepositoryImpl @Inject constructor(

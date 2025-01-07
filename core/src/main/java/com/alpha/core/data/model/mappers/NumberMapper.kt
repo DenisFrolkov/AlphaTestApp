@@ -1,4 +1,4 @@
-package com.alpha.feature_bin.data.mappers
+package com.alpha.core.data.model.mappers
 
 import com.alpha.core.data.database.models.NumberEntity
 import com.alpha.core.data.model.Number

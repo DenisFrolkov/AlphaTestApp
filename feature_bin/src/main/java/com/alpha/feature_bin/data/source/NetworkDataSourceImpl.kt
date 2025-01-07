@@ -3,7 +3,7 @@ package com.alpha.feature_bin.data.source
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.alpha.core.source.NetworkDataSource
+import com.alpha.core.domain.source.NetworkDataSource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 

@@ -4,15 +4,15 @@ import com.alpha.core.data.model.Bank
 import com.alpha.core.data.model.BinInfo
 import com.alpha.core.data.model.Country
 import com.alpha.core.data.model.Number
-import com.alpha.core.repository.BinInfoHistoryRepository
+import com.alpha.core.domain.repository.BinRepository
 
-class SaveBinInfoUseCase(private val binInfoHistoryRepository: BinInfoHistoryRepository) {
+class SaveBinInfoUseCase(private val binRepository: BinRepository) {
     suspend operator fun invoke(
         binInfo: BinInfo,
         number: Number?,
         country: Country?,
         bank: Bank?
     ) {
-        binInfoHistoryRepository.saveBinInfo(binInfo, number, country, bank)
+        binRepository.saveBinInfo(binInfo, number, country, bank)
     }
 }
