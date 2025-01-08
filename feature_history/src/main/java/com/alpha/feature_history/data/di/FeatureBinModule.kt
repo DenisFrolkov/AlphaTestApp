@@ -1,6 +1,6 @@
 package com.alpha.feature_history.data.di
 
-import com.alpha.core.domain.repository.BinHistoryRepository
+import com.alpha.feature_history.domain.repository.HistoryBinLocalRepository
 import com.alpha.feature_history.domain.usecase.GetAllBinInfoUseCase
 import dagger.Module
 import dagger.Provides
@@ -14,7 +14,7 @@ object FeatureBinModule {
 
     @Provides
     @Singleton
-    fun providesGetAllBinInfoUseCase(repository: BinHistoryRepository): GetAllBinInfoUseCase {
+    fun providesGetAllBinInfoUseCase(repository: HistoryBinLocalRepository): GetAllBinInfoUseCase {
         return GetAllBinInfoUseCase(repository)
     }
 

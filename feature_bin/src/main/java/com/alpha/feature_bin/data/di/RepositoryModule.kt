@@ -1,16 +1,18 @@
 package com.alpha.feature_bin.data.di
 
 import android.content.Context
+import com.alpha.core.data.database.BinDao
 import com.alpha.core.data.network.ApiService
-import com.alpha.core.domain.repository.BinRepository
+import com.alpha.feature_bin.domain.repository.BinRepository
 import com.alpha.core.domain.repository.NetworkRepository
-import com.alpha.core.domain.source.LocalDataSource
 import com.alpha.core.domain.source.NetworkDataSource
-import com.alpha.core.domain.source.RemoveDataSource
 import com.alpha.feature_bin.data.repository.BinRepositoryImpl
 import com.alpha.feature_bin.data.repository.NetworkRepositoryImpl
+import com.alpha.feature_bin.data.source.BinLocalDataSourceImpl
+import com.alpha.feature_bin.data.source.BinRemoveDataSourceImpl
 import com.alpha.feature_bin.data.source.NetworkDataSourceImpl
-import com.alpha.feature_bin.data.source.RemoveDataSourceImpl
+import com.alpha.feature_bin.domain.datasource.BinLocalDataSource
+import com.alpha.feature_bin.domain.datasource.BinRemoveDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,19 +26,27 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRemoveDataSource(
+    fun provideBinLocalDataSource(
+        binDao: BinDao,
+    ): BinLocalDataSource {
+        return BinLocalDataSourceImpl(binDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBinRemoveDataSource(
         apiService: ApiService,
-    ): RemoveDataSource {
-        return RemoveDataSourceImpl(apiService)
+    ): BinRemoveDataSource {
+        return BinRemoveDataSourceImpl(apiService)
     }
 
     @Provides
     @Singleton
     fun provideBinInfoRepository(
-        removeDataSource: RemoveDataSource,
-        localDataSource: LocalDataSource
+        binLocalDataSource: BinLocalDataSource,
+        binRemoveDataSource: BinRemoveDataSource
     ): BinRepository {
-        return BinRepositoryImpl(removeDataSource, localDataSource)
+        return BinRepositoryImpl(binRemoveDataSource, binLocalDataSource)
     }
 
     @Provides

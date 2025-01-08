@@ -1,13 +1,13 @@
 package com.alpha.feature_history.data.di
 
 import com.alpha.core.data.database.BinDao
-import com.alpha.core.domain.source.LocalDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import com.alpha.core.domain.repository.BinHistoryRepository
-import com.alpha.feature_history.data.repository.BinHistoryRepositoryImpl
-import com.alpha.feature_history.data.source.LocalDataSourceImpl
+import com.alpha.feature_history.data.repository.HistoryBinRepositoryImpl
+import com.alpha.feature_history.data.source.HistoryBinLocalDataSourceImpl
+import com.alpha.feature_history.domain.datasource.HistoryBinLocalDataSource
+import com.alpha.feature_history.domain.repository.HistoryBinLocalRepository
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -17,17 +17,17 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLocalDataSource(
+    fun provideHistoryBinLocalDataSource(
         dao: BinDao,
-    ): LocalDataSource {
-        return LocalDataSourceImpl(dao)
+    ): HistoryBinLocalDataSource {
+        return HistoryBinLocalDataSourceImpl(dao)
     }
 
     @Provides
     @Singleton
-    fun provideBinInfoHistoryRepository(
-        localDataSource: LocalDataSource,
-    ): BinHistoryRepository {
-        return BinHistoryRepositoryImpl(localDataSource)
+    fun provideHistoryBinRepository(
+        historyBinLocalDataSource: HistoryBinLocalDataSource,
+    ): HistoryBinLocalRepository {
+        return HistoryBinRepositoryImpl(historyBinLocalDataSource)
     }
 }

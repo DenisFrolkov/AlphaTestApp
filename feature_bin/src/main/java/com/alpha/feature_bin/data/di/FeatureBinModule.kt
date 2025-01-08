@@ -1,7 +1,6 @@
 package com.alpha.feature_bin.data.di
 
-import com.alpha.core.domain.repository.BinHistoryRepository
-import com.alpha.core.domain.repository.BinRepository
+import com.alpha.feature_bin.domain.repository.BinRepository
 import com.alpha.core.domain.repository.NetworkRepository
 import com.alpha.feature_bin.domain.usecases.CheckInternetUseCase
 import com.alpha.feature_bin.domain.usecases.GetBinInfoUseCase
