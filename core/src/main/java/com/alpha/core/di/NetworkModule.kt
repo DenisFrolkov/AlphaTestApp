@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-private val BASE_URL = "https://lookup.binlist.net/"
+private const val BASE_URL = "https://lookup.binlist.net/"
 
 @Module
 @InstallIn(SingletonComponent::class)
