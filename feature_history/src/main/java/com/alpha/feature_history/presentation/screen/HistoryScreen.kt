@@ -55,11 +55,8 @@ fun HistoryScreen(
     navController: NavController,
     historyViewModel: HistoryViewModel
 ) {
-
     val context = LocalContext.current
-
     val listBinInfo = historyViewModel.binHistoryInfo.collectAsState().value
-
     var expandedItems = remember { mutableStateMapOf<String, Boolean>() }
 
     Scaffold(
