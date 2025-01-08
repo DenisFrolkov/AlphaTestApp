@@ -1,5 +1,8 @@
 package com.alpha.feature_history.presentation.screen
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -40,6 +43,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -51,6 +55,9 @@ fun HistoryScreen(
     navController: NavController,
     historyViewModel: HistoryViewModel
 ) {
+
+    val context = LocalContext.current
+
     val listBinInfo = historyViewModel.binHistoryInfo.collectAsState().value
 
     var expandedItems = remember { mutableStateMapOf<String, Boolean>() }
@@ -293,7 +300,23 @@ fun HistoryScreen(
                                             }
                                             if (bin.country != null) {
                                                 Spacer(modifier = Modifier.height(4.dp))
-                                                Column {
+                                                Column(
+                                                    modifier = Modifier.clickable(
+                                                        interactionSource = remember { MutableInteractionSource() },
+                                                        indication = null
+                                                    ) {
+                                                        if (bin.country?.latitude != null && bin.country?.longitude != null) {
+                                                            val fallbackIntent = Intent(
+                                                                Intent.ACTION_VIEW,
+                                                                Uri.parse(
+                                                                    "geo:${bin.country?.latitude},${bin.country?.longitude}?q=${bin.country?.latitude},${bin.country?.longitude}(${
+                                                                        Uri.encode(bin.country?.name)
+                                                                    })"
+                                                                )
+                                                            )
+                                                            context.startActivity(fallbackIntent)
+                                                        }
+                                                    }) {
                                                     Text(
                                                         text = "COUNTRY",
                                                         color = MaterialTheme.colorScheme.secondary,
@@ -306,7 +329,7 @@ fun HistoryScreen(
                                                             fontSize = 14.sp
                                                         )
                                                     }
-                                                    if (bin.country != null) {
+                                                    if (bin.country?.latitude != null && bin.country?.longitude != null) {
                                                         Row() {
                                                             Row {
                                                                 Text(
@@ -362,14 +385,34 @@ fun HistoryScreen(
                                                 Text(
                                                     text = it,
                                                     color = MaterialTheme.colorScheme.primary,
-                                                    fontSize = 12.sp
+                                                    fontSize = 12.sp,
+                                                    modifier = Modifier.clickable(
+                                                        interactionSource = remember { MutableInteractionSource() },
+                                                        indication = null
+                                                    ) {
+                                                        val intent = Intent(
+                                                            Intent.ACTION_VIEW,
+                                                            Uri.parse("http://${it}")
+                                                        )
+                                                        context.startActivity(intent)
+                                                    }
                                                 )
                                             }
                                             bin.bank!!.phone?.let {
                                                 Text(
                                                     text = it,
                                                     color = MaterialTheme.colorScheme.primary,
-                                                    fontSize = 12.sp
+                                                    fontSize = 12.sp,
+                                                    modifier = Modifier.clickable(
+                                                        interactionSource = remember { MutableInteractionSource() },
+                                                        indication = null
+                                                    ) {
+                                                        val intent = Intent(
+                                                            Intent.ACTION_DIAL,
+                                                            Uri.parse("tel:$it")
+                                                        )
+                                                        context.startActivity(intent)
+                                                    }
                                                 )
                                             }
                                         }

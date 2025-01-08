@@ -1,8 +1,11 @@
 package com.alpha.feature_bin.presentation.screen
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -39,6 +42,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -54,6 +58,9 @@ fun MainScreen(
     navController: NavController,
     mainViewModel: MainViewModel
 ) {
+
+    val context = LocalContext.current
+
     val bin = mainViewModel.binInfo.collectAsState().value
 
     var textValue by remember { mutableStateOf("") }
@@ -117,7 +124,7 @@ fun MainScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 30.dp),
-                    )
+                )
                 if (clickSearch) {
                     Column(
                         modifier = Modifier
@@ -270,7 +277,23 @@ fun MainScreen(
                                         }
                                         if (bin.data.country != null) {
                                             Spacer(modifier = Modifier.height(4.dp))
-                                            Column {
+                                            Column(
+                                                modifier = Modifier.clickable(
+                                                    interactionSource = remember { MutableInteractionSource() },
+                                                    indication = null
+                                                ) {
+                                                    if (bin.data.country?.latitude != null && bin.data.country?.longitude != null) {
+                                                        val fallbackIntent = Intent(
+                                                            Intent.ACTION_VIEW,
+                                                            Uri.parse(
+                                                                "geo:${bin.data.country?.latitude},${bin.data.country?.longitude}?q=${bin.data.country?.latitude},${bin.data.country?.longitude}(${
+                                                                    Uri.encode(bin.data.country?.name)
+                                                                })"
+                                                            )
+                                                        )
+                                                        context.startActivity(fallbackIntent)
+                                                    }
+                                                }) {
                                                 Text(
                                                     text = "COUNTRY",
                                                     color = MaterialTheme.colorScheme.secondary,
@@ -283,7 +306,7 @@ fun MainScreen(
                                                         fontSize = 14.sp
                                                     )
                                                 }
-                                                if (bin.data.country != null) {
+                                                if (bin.data.country?.latitude != null && bin.data.country?.longitude != null) {
                                                     Row() {
                                                         Row {
                                                             Text(
