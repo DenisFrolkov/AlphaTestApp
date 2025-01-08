@@ -43,10 +43,6 @@ interface BinDao {
     }
 
     @Transaction
-    @Query("SELECT * FROM bin_info WHERE bId = :binId")
-    suspend fun getBinInfoWithDetails(binId: Int): BinInfoWithDetailsEntity
-
-    @Transaction
     @Query("SELECT * FROM bin_info")
     suspend fun getAllBinInfoWithDetails(): List<BinInfoWithDetailsEntity>
 }

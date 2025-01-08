@@ -1,11 +1,11 @@
 package com.alpha.feature_history.domain.usecase
 
 import com.alpha.core.data.model.BinInfo
-import com.alpha.core.domain.repository.BinHistoryRepository
+import com.alpha.feature_history.domain.repository.HistoryBinLocalRepository
 import javax.inject.Inject
 
-class GetAllBinInfoUseCase @Inject constructor(private val binHistoryRepository: BinHistoryRepository) {
+class GetAllBinInfoUseCase @Inject constructor(private val historyBinLocalRepository: HistoryBinLocalRepository) {
     suspend operator fun invoke(): List<BinInfo> {
-        return binHistoryRepository.getAllBinInfoWithDetails()
+        return historyBinLocalRepository.getAllBinInfoWithDetails()
     }
 }

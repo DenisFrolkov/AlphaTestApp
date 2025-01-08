@@ -1,4 +1,4 @@
-package com.alpha.core.models
+package com.alpha.core.data.network.models
 
 import com.google.gson.annotations.SerializedName
 

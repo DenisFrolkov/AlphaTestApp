@@ -5,8 +5,7 @@ import com.alpha.core.data.model.Bank
 import com.alpha.core.data.model.BinInfo
 import com.alpha.core.data.model.Country
 import com.alpha.core.data.model.Number
-import com.alpha.core.data.model.mappers.BinInfoMapper.toEntity
-import com.alpha.core.models.BinInfoResponse
+import com.alpha.core.data.network.models.BinInfoResponse
 
 object BinInfoMapper {
 

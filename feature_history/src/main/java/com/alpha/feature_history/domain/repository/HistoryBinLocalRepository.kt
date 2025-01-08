@@ -1,7 +1,7 @@
-package com.alpha.core.domain.repository
+package com.alpha.feature_history.domain.repository
 
 import com.alpha.core.data.model.BinInfo
 
-interface BinHistoryRepository {
+interface HistoryBinLocalRepository {
     suspend fun getAllBinInfoWithDetails(): List<BinInfo>
 }

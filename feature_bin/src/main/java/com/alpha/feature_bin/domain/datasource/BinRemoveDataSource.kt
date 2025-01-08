@@ -1,7 +1,7 @@
-package com.alpha.core.domain.source
+package com.alpha.feature_bin.domain.datasource
 
 import com.alpha.core.data.model.BinInfo
 
-interface RemoveDataSource {
+interface BinRemoveDataSource {
     suspend fun getBinInfo(bin: String): BinInfo
 }
