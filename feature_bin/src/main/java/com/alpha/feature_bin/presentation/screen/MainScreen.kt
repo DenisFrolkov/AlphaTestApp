@@ -54,6 +54,7 @@ fun MainScreen(
     navController: NavController,
     mainViewModel: MainViewModel
 ) {
+
     val bin = mainViewModel.binInfo.collectAsState().value
 
     var textValue by remember { mutableStateOf("") }
@@ -117,7 +118,7 @@ fun MainScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 30.dp),
-                    )
+                )
                 if (clickSearch) {
                     Column(
                         modifier = Modifier
