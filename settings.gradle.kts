@@ -21,3 +21,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "AlphaTestApp"
 include(":app")
+include(":feature_bin")
+include(":core")
+include(":feature_history")
